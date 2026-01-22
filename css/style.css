@@ -1,0 +1,203 @@
+/* Basit ve anlaşılır temel stil dosyası
+   - Arka plan GIF ve koyu mod overlay'i burada tanımlanır
+   - Diğer temel sayfa stilleri (örnek) eklendi
+*/
+
+/* Temel düzen */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+/* Arka plan kapsayıcısı: GIF burada uygulanır */
+.bg-image-wrapper {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  border-radius: inherit;
+  background-image: url('../images/background.gif');
+  background-repeat: repeat;
+  background-position: left top;
+  background-size: 250px auto;
+  z-index: 0;
+  pointer-events: none; /* arka plan tıklamaları etkilemesin */
+  overflow: hidden;
+}
+
+/* Koyu mod için yarı saydam koyu gri overlay */
+:root { --bg-overlay-color: rgba(0,0,0,0); }
+@media (prefers-color-scheme: dark) {
+  :root { --bg-overlay-color: rgba(2, 2, 2, 0.781); }
+}
+
+.bg-image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-overlay-color);
+  mix-blend-mode: normal;
+  pointer-events: none;
+}
+
+/* Basit header/nav örneği */
+header { position: relative; z-index: 10; }
+.navbar { background: transparent; padding: 12px 16px; }
+.navbar-container { display: flex; align-items: center; gap: 12px; }
+.logo img { height: 36px; }
+.name { font-weight: 600; }
+.nav-menu { list-style: none; display: flex; gap: 10px; margin: 0; padding: 0; }
+.nav-link { text-decoration: none; color: inherit; }
+
+main { position: relative; z-index: 5; padding: 40px; }
+footer { position: relative; z-index: 5; padding: 20px; }
+/* Türkçe Bilgilendirme: Bu dosya, web sitesinin tüm görsel tasarımını içerir. */
+
+/* Genel Sayfa Stilleri */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    background-image: url('../images/background.gif'); /* Arka plan GIF'i */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Sayfa kaydırılsa bile arka plan sabit kalır */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Renk Değişkenleri (Aydınlık ve Karanlık Tema için) */
+:root {
+     --bg-color: #1c1c1e;
+    --text-color: #ffffff;
+    --navbar-bg: rgba(28, 28, 30, 0.8);
+    --navbar-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --link-hover-color: #21fb04;
+}
+
+
+/* Üst Menü Barı */
+.navbar {
+    background-color: var(--navbar-bg);
+    backdrop-filter: blur(10px); /* Arka planı bulanıklaştırarak cam efekti verir */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 25px; /* iPhone cihaz köşesi gibi yuvarlaklık */
+    box-shadow: var(--navbar-shadow);
+    padding: 10px 25px;
+    margin: 0 auto;
+    max-width: 850px;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Logo ve İsim */
+.logo img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-left: 15px;
+    flex-grow: 1; /* İsmin kalan boşluğu doldurmasını sağlar */
+}
+
+/* Menü Linkleri */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative; /* Açılır menü için konumlandırma referansı */
+    margin: 0 15px;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 5px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--link-hover-color);
+}
+
+/* Açılır Menü */
+.dropdown-menu {
+    display: none; /* Başlangıçta gizli */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--navbar-bg);
+    list-style: none;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: var(--navbar-shadow);
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block; /* Ana menü elemanının üzerine gelince göster */
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* Animasyon ve Görünüm Ayarları */
+  
+  .kapsayici {
+    font-family: 'Arial', sans-serif;
+    font-size: auto;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  /* Animasyonun uygulanacağı ana sınıf */
+  .degisen-yazi {
+    display: inline-block; /* Animasyonun düzgün çalışması için gerekli */
+    transition: opacity 0.7s ease, transform 0.7s ease; /* 0.3 saniyelik geçiş */
+    color: #fff; /* Başlangıç yazı rengi */
+  }
+
+  /* Yazı gizlenirken alacağı hal */
+  .gizle {
+    opacity: 0;
+    transform: translateY(-10px); /* Yazıyı hafifçe yukarı kaydırır */
+  }
+
+  /* Yeni yazı gelirken başlangıç pozisyonu (JS ile kontrol edilir) */
+  .goster-hazirlik {
+    transform: translateY(10px); /* Yeni yazı aşağıdan gelir */
+  }
+
+ /* Sayfa İçeriği Stili */
+
+ .sayfa {
+    max-width: 850px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 50px;
+    background-color: rgb(23, 23, 23);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
