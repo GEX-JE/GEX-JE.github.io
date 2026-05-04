@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0a0a0f;
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+#root { width: 100%; }
+
+/* ── Preloader ── */
+.loading-screen { position: fixed; inset: 0; background: #000; z-index: 9999; pointer-events: none; }
+
+.counter {
+  position: fixed; left: 50px; bottom: 50px;
+  display: flex; height: 100px; font-size: 100px;
+  line-height: 102px;
+  clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+  font-weight: 700; color: #fff;
+}
+.counter-1, .counter-2, .counter-3 { position: relative; top: -15px; }
+.num1offset1 { position: relative; right: -25px; }
+.num1offset2 { position: relative; right: -10px; }
+
+.loader-bar {
+  position: absolute; top: 50%; left: 50%;
+  width: 300px; height: 50px;
+  transform: translate(-50%, -50%);
+  display: flex; background: rgb(80,80,80);
+  border-radius: 4px; overflow: hidden;
+}
+.bar-1 { height: 50px; background: #fff; width: 200px; position: relative; }
+.bar-2 { height: 50px; background: #fff; width: 100px; position: relative; }
+
+.loader-name {
+  position: fixed; bottom: 50px; right: 50px;
+  font-size: 14px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: #fff; opacity: 0;
+}
+
+/* ── Animations ── */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spin { animation: spin 8s linear infinite; }
+
+@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+.pulse { animation: pulse 2s ease-in-out infinite; }
+
+/* ── Scroll reveal ── */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Gradient text ── */
+.grad-text {
+  background: linear-gradient(135deg, #a855f7, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
