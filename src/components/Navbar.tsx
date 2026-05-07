@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl bg-bg/80 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-iphone flex justify-between items-center z-50">
       <div className="flex items-center gap-3">
         <img src={logo} alt="Logo" className="w-10 h-10 rounded-full object-cover border border-white/20" />
-        <span className="font-black text-lg grad-text tracking-widest hidden sm:block">IEA</span>
+        <span className="font-black text-lg grad-text tracking-widest hidden sm:block">GEXJE</span>
       </div>
       <ul className="hidden md:flex gap-8 text-sm font-medium text-text-muted">
         <li><a href="#hero" className="hover:text-accent3 transition-colors">Ana Sayfa</a></li>
