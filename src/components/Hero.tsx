@@ -21,14 +21,14 @@ export default function Hero() {
     const pos = new Float32Array(count * 3)
     for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 15
     geo.setAttribute('position', new THREE.BufferAttribute(pos, 3))
-    const mat = new THREE.PointsMaterial({ color: '#7c3aed', size: 0.03, transparent: true, opacity: 0.6 })
+    const mat = new THREE.PointsMaterial({ color: '#555555', size: 0.03, transparent: true, opacity: 0.6 })
     const points = new THREE.Points(geo, mat)
     scene.add(points)
 
     // Shapes
     const torus = new THREE.Mesh(
       new THREE.TorusGeometry(2, 0.6, 16, 100),
-      new THREE.MeshBasicMaterial({ color: '#a855f7', wireframe: true, transparent: true, opacity: 0.1 })
+      new THREE.MeshBasicMaterial({ color: '#888888', wireframe: true, transparent: true, opacity: 0.1 })
     )
     scene.add(torus)
 
